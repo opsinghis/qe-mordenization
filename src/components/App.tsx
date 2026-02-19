@@ -1220,36 +1220,41 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mode toggle */}
-        <div style={{ display: "flex", alignItems: "center", gap: 6, padding: 5, background: T.surfaceAlt, borderRadius: 28, marginBottom: 14, width: "fit-content", opacity: view === "slides" ? 0.5 : 1, pointerEvents: view === "slides" ? "none" : "auto" }}>
-          <button
-            onClick={() => setMode("current")}
-            style={{ padding: "8px 22px", border: "none", borderRadius: 22, fontFamily: T.font, fontSize: 13, fontWeight: 700, cursor: view === "slides" ? "not-allowed" : "pointer", transition: "all 0.3s", background: mode === "current" ? T.surface : "transparent", color: mode === "current" ? T.text : T.textMuted, boxShadow: mode === "current" ? "0 1px 3px rgba(0,0,0,0.08)" : "none" }}>
-            📋 Current State
-          </button>
-          <button
-            onClick={() => setMode("vision")}
-            style={{ padding: "8px 22px", border: "none", borderRadius: 22, fontFamily: T.font, fontSize: 13, fontWeight: 700, cursor: view === "slides" ? "not-allowed" : "pointer", transition: "all 0.3s", background: mode === "vision" ? T.accent : "transparent", color: mode === "vision" ? "white" : T.textMuted, boxShadow: mode === "vision" ? `0 2px 12px rgba(74,58,186,0.3)` : "none" }}>
-            🤖 Agentic Vision
-          </button>
+        {/* Navigation: View tabs + Mode toggle */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
+          {/* View tabs */}
+          <div style={{ display: "flex", gap: 4 }}>
+            {views.map(v => (
+              <button
+                key={v.key}
+                onClick={() => setView(v.key)}
+                style={{ padding: "9px 18px", border: "none", borderRadius: T.radiusSm, fontFamily: T.font, fontSize: 13, fontWeight: view === v.key ? 700 : 500, color: view === v.key ? T.text : T.textMuted, background: view === v.key ? T.surfaceAlt : "transparent", cursor: "pointer", transition: "all 0.2s" }}>
+                {v.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Mode toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: 5, background: T.surfaceAlt, borderRadius: 28, opacity: view === "slides" ? 0.5 : 1, pointerEvents: view === "slides" ? "none" : "auto" }}>
+            <button
+              onClick={() => setMode("current")}
+              style={{ padding: "8px 22px", border: "none", borderRadius: 22, fontFamily: T.font, fontSize: 13, fontWeight: 700, cursor: view === "slides" ? "not-allowed" : "pointer", transition: "all 0.3s", background: mode === "current" ? T.surface : "transparent", color: mode === "current" ? T.text : T.textMuted, boxShadow: mode === "current" ? "0 1px 3px rgba(0,0,0,0.08)" : "none" }}>
+              📋 Current State
+            </button>
+            <button
+              onClick={() => setMode("vision")}
+              style={{ padding: "8px 22px", border: "none", borderRadius: 22, fontFamily: T.font, fontSize: 13, fontWeight: 700, cursor: view === "slides" ? "not-allowed" : "pointer", transition: "all 0.3s", background: mode === "vision" ? T.accent : "transparent", color: mode === "vision" ? "white" : T.textMuted, boxShadow: mode === "vision" ? `0 2px 12px rgba(74,58,186,0.3)` : "none" }}>
+              🤖 Agentic Vision
+            </button>
+          </div>
         </div>
+
+        {/* Helper text for slideshow */}
         {view === "slides" && (
-          <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 12, fontStyle: "italic" }}>
+          <div style={{ fontSize: 11, color: T.textMuted, marginTop: 10, fontStyle: "italic" }}>
             💡 Slideshow presents the full journey from current state to agentic vision
           </div>
         )}
-
-        {/* View tabs */}
-        <div style={{ display: "flex", gap: 4 }}>
-          {views.map(v => (
-            <button
-              key={v.key}
-              onClick={() => setView(v.key)}
-              style={{ padding: "9px 18px", border: "none", borderRadius: T.radiusSm, fontFamily: T.font, fontSize: 13, fontWeight: view === v.key ? 700 : 500, color: view === v.key ? T.text : T.textMuted, background: view === v.key ? T.surfaceAlt : "transparent", cursor: "pointer", transition: "all 0.2s" }}>
-              {v.label}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Main content */}
