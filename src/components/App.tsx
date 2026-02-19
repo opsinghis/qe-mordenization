@@ -595,11 +595,11 @@ const Chip = ({ label, type }) => {
   return <span style={{ padding: "5px 13px", borderRadius: 20, fontSize: 12, fontWeight: 600, background: c.bg, color: c.text, border: `1px solid ${c.border}`, whiteSpace: "nowrap" }}>{label}</span>;
 };
 
-const SectionLabel = ({ children, color }) => (
+const SectionLabel = ({ children, color }: { children: any; color?: any }) => (
   <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 1.5, color: color || T.textMuted, fontWeight: 700, marginBottom: 14 }}>{children}</div>
 );
 
-const Card = ({ children, style, onClick }) => (
+const Card = ({ children, style, onClick }: { children: any; style?: any; onClick?: any }) => (
   <div onClick={onClick} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: T.radius, overflow: "hidden", transition: "all 0.25s", cursor: onClick ? "pointer" : "default", ...style }}>{children}</div>
 );
 
@@ -761,7 +761,7 @@ const PhaseCard = ({ phase, isVision, expanded, onToggle }) => {
 // ============================================================
 
 const SlideRenderer = ({ slide }) => {
-  const base = { width: "100%", minHeight: 520, display: "flex", flexDirection: "column", justifyContent: "center", padding: 56, borderRadius: T.radius, overflow: "hidden", position: "relative" };
+  const base: React.CSSProperties = { width: "100%", minHeight: 520, display: "flex", flexDirection: "column", justifyContent: "center", padding: 56, borderRadius: T.radius, overflow: "hidden", position: "relative" };
 
   switch (slide.layout) {
     case "cover":
